@@ -51,6 +51,7 @@
             pblogo.SizeMode = PictureBoxSizeMode.Zoom;
             pblogo.TabIndex = 0;
             pblogo.TabStop = false;
+            pblogo.Click += pblogo_Click;
             // 
             // pnMain
             // 
@@ -89,6 +90,7 @@
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Войти";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // txtPassword
             // 

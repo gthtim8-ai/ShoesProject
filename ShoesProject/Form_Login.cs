@@ -24,5 +24,15 @@ namespace ShoesProject
         {
 
         }
+
+        private void pblogo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
