@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using ShoesProject.Models;
+using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
-namespace ShoesProject.Models;
+namespace ShoesProject;
 
 public partial class DbShop2Context : DbContext
 {
@@ -40,7 +41,7 @@ public partial class DbShop2Context : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://microsoft.com. For more guidance on storing connection strings, see https://microsoft.com.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=db_shop2;Username=postgres;Password=1111");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

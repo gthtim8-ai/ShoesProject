@@ -51,7 +51,6 @@
             pblogo.SizeMode = PictureBoxSizeMode.Zoom;
             pblogo.TabIndex = 0;
             pblogo.TabStop = false;
-            pblogo.Click += pblogo_Click;
             // 
             // pnMain
             // 
@@ -65,7 +64,6 @@
             pnMain.Name = "pnMain";
             pnMain.Size = new Size(360, 210);
             pnMain.TabIndex = 1;
-            pnMain.Paint += panel1_Paint;
             // 
             // btnGuest
             // 
@@ -78,6 +76,7 @@
             btnGuest.TabIndex = 5;
             btnGuest.Text = "Войти как гость";
             btnGuest.UseVisualStyleBackColor = false;
+            btnGuest.Click += BtnGuest_Click;
             // 
             // btnLogin
             // 
@@ -90,7 +89,7 @@
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Войти";
             btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
+            btnLogin.Click += BtnLogin_Click;
             // 
             // txtPassword
             // 
