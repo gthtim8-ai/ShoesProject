@@ -1,11 +1,5 @@
 ﻿using ShoesProject.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace ShoesProject
 {
@@ -63,9 +57,14 @@ namespace ShoesProject
         private void BtnGuest_Click(object sender, EventArgs e)
         {
             CurrentUser = null;
-            IsGuest=true;
+            IsGuest = true;
             this.DialogResult = DialogResult.OK;
-            this.Close ();
+            this.Close();
+        }
+
+        private void Form_Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

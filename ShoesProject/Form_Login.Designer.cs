@@ -140,6 +140,7 @@
             Name = "Form_Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Вход в систему";
+            Load += Form_Login_Load;
             ((System.ComponentModel.ISupportInitialize)pblogo).EndInit();
             pnMain.ResumeLayout(false);
             pnMain.PerformLayout();
