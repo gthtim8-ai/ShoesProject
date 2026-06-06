@@ -31,7 +31,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panelTop = new Panel();
             lblUserName = new Label();
-            btnLogin = new Button();
+            btnLogut = new Button();
             dgvProducts = new DataGridView();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
@@ -40,7 +40,7 @@
             // panelTop
             // 
             panelTop.Controls.Add(lblUserName);
-            panelTop.Controls.Add(btnLogin);
+            panelTop.Controls.Add(btnLogut);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(10, 10);
             panelTop.Margin = new Padding(0);
@@ -60,18 +60,19 @@
             lblUserName.Text = "label1";
             lblUserName.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnLogin
+            // btnLogut
             // 
-            btnLogin.BackColor = Color.MediumSpringGreen;
-            btnLogin.Dock = DockStyle.Right;
-            btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Location = new Point(814, 0);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(150, 30);
-            btnLogin.TabIndex = 5;
-            btnLogin.Text = "Войти";
-            btnLogin.UseVisualStyleBackColor = false;
+            btnLogut.BackColor = Color.MediumSpringGreen;
+            btnLogut.Dock = DockStyle.Right;
+            btnLogut.FlatAppearance.BorderSize = 0;
+            btnLogut.FlatStyle = FlatStyle.Flat;
+            btnLogut.Location = new Point(814, 0);
+            btnLogut.Name = "btnLogut";
+            btnLogut.Size = new Size(150, 30);
+            btnLogut.TabIndex = 5;
+            btnLogut.Text = "Выход";
+            btnLogut.UseVisualStyleBackColor = false;
+            btnLogut.Click += BtnLogut_Click;
             // 
             // dgvProducts
             // 
@@ -124,6 +125,6 @@
         private Panel panelTop;
         private DataGridView dgvProducts;
         private Label lblUserName;
-        private Button btnLogin;
+        private Button btnLogut;
     }
 }
