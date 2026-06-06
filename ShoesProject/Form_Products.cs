@@ -8,6 +8,7 @@ namespace ShoesProject
     {
         public User CurrentUser { get; private set; }
         public bool IsGuest { get; private set; }
+
         public Form_Products(User user, bool guest)
         {
             InitializeComponent();
@@ -23,14 +24,14 @@ namespace ShoesProject
             colInfo.FillWeight = 60;
             colInfo.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            var colDiscount = new DataGridViewImageColumn();
+            var colDiscount = new DataGridViewTextBoxColumn();
             colDiscount.Name = "colDiscount";
             colDiscount.FillWeight = 10;
             colDiscount.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvProducts.Columns.AddRange(
             [
-                colPhoto,colInfo, colDiscount
+                colPhoto, colInfo, colDiscount
             ]);
 
             CurrentUser = user;
@@ -47,7 +48,13 @@ namespace ShoesProject
             {
                 using (var db = new DbShop2Context())
                 {
-                    var products = db.Products.Include(i => i.Category).Include(i => i.Manufacturer).Include(i => i.Supplier).Include(i => i.Measure).ToList();
+                    var products = db.Products
+                        .Include(i => i.Category)
+                        .Include(i => i.Manufacturer)
+                        .Include(i => i.Supplier)
+                        .Include(i => i.ProductType)
+                        .Include(i => i.IdMeasureNavigatMeasureion)
+                        .ToList();
 
                     dgvProducts.SuspendLayout();
                     dgvProducts.Rows.Clear();
@@ -71,6 +78,11 @@ namespace ShoesProject
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка загрузки: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dgvProducts.ResumeLayout();
+                dgvProducts.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
             }
         }
 
@@ -103,19 +115,19 @@ namespace ShoesProject
             if (product.Discount > 0)
             {
                 decimal finalPrice = product.Price * (100 - product.Discount) / 100;
-                priceText = $"Цена: {product.Price:(} -> {finalPrice:C}";
+                priceText = $"{product.Price:C} -> {finalPrice:C}";
             }
             else
             {
-                priceText = $"Цена: {product.Price:(}";
+                priceText = $"{product.Price:C}";
             }
 
-            return $"{product.Category.CategoryName} | {product.ProductType.ProdType}" + Environment.NewLine + $"" + Environment.NewLine +
+            return $"{product.Category.CategoryName} | {product.ProductType.ProdType}" + Environment.NewLine + Environment.NewLine +
                 $"Описание товара: {product.Description}" + Environment.NewLine +
                 $"Производитель: {product.Manufacturer.ManufacturerName}" + Environment.NewLine +
                 $"Поставщик: {product.Supplier.SupplierName}" + Environment.NewLine +
                 $"Цена: {priceText}" + Environment.NewLine +
-                $"Единица измерения: {product.Measure.MeasureName}" + Environment.NewLine +
+                $"Единица измерения: {product.IdMeasureNavigatMeasureion.MeasureName}" + Environment.NewLine +
                 $"Количество на складе: {product.CountInStock}";
         }
 
@@ -130,9 +142,7 @@ namespace ShoesProject
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.Clear(Color.White);
-                g.DrawRectangle(Pens.LightGray, 0, 0, 149, 199);
-
-
+                g.DrawRectangle(Pens.LightGray, 0, 0, 149, 99);
             }
 
             return Resources.picture;

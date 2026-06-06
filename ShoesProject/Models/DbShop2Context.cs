@@ -3,7 +3,7 @@ using ShoesProject.Models;
 using System;
 using System.Collections.Generic;
 
-namespace ShoesProject.Models; // Исправлено для устранения предупреждения IDE0130
+namespace ShoesProject.Models;
 
 public partial class DbShop2Context : DbContext
 {
@@ -121,8 +121,8 @@ public partial class DbShop2Context : DbContext
                 .HasForeignKey(d => d.IdManufacturer)
                 .HasConstraintName("products_id_manufacturer_fkey");
 
-            // ИСПРАВЛЕНО: Изменено на HasOne<Measure>() без явного свойства, чтобы убрать ошибку CS1061
-            entity.HasOne<Measure>().WithMany(p => p.Products)
+            // ИСПРАВЛЕНО: Связь теперь строго зафиксирована за свойством IdMeasureNavigatMeasureion
+            entity.HasOne(d => d.IdMeasureNavigatMeasureion).WithMany(p => p.Products)
                 .HasForeignKey(d => d.IdMeasure)
                 .HasConstraintName("products_id_measure_fkey");
 

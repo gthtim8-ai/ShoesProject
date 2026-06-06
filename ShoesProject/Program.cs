@@ -2,16 +2,37 @@ namespace ShoesProject
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form_Login());
+            bool exitProgram = false;
+
+            while (!exitProgram)
+            {
+                using (var formlogin = new Form_Login())
+                {
+                    if (Form_Login.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var Form_Products = new Form_Products(
+                            Form_Login.CurrentUser,
+                            Form_Login.IsGuest))
+                        {
+                            if (Form_Products.ShowDialog() == DialogResult.Cancel)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                exitProgram = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        exitProgram = true;
+                    }
+                }
+            }
         }
     }
 }

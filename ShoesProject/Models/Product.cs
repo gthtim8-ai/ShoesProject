@@ -37,5 +37,4 @@ public partial class Product
     public virtual ProductType ProductType { get; set; } = null!;
 
     public virtual ICollection<ProductsOrder> ProductsOrders { get; set; } = new List<ProductsOrder>();
-    public Measure Measure { get; set; }
 }

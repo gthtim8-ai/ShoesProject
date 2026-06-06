@@ -5,8 +5,24 @@ namespace ShoesProject
 {
     public partial class Form_Login : Form
     {
-        public User CurrentUser { get; private set; }
-        public bool IsGuest { get; private set; }
+        // 1. Свойства сделаны статическими (static), чтобы к ним можно было обращаться через Form_Login.CurrentUser
+        public static User CurrentUser { get; private set; }
+        public static bool IsGuest { get; private set; }
+
+        // 2. Статический метод, чтобы работал вызов Form_Login.ShowDialog()
+        public static new DialogResult ShowDialog()
+        {
+            using (var instance = new Form_Login())
+            {
+                return instance.ShowDialogBase();
+            }
+        }
+
+        // Вспомогательный метод для обхода бесконечной рекурсии
+        private DialogResult ShowDialogBase()
+        {
+            return base.ShowDialog();
+        }
 
         public Form_Login()
         {
